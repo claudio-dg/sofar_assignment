@@ -79,7 +79,7 @@ def BoxTrackerCallback(req):
 
 def modelStateCallback(modelState):
 
-	""" 
+    """ 
     Callback that checks the position of the box. 
     When it triggers a condition it calls the client to stop the conveyor.
     
@@ -91,11 +91,11 @@ def modelStateCallback(modelState):
 	
     nItems = len(listNames)
     
-	#check every item in the list of gazebo's objects
+    #check every item in the list of gazebo's objects
     for item in range(0, len(listNames) ):
         pose = model_state.pose[item]
 		
-		#if the item is between that coordinates  we need to stop the conveyor
+	#if the item is between that coordinates  we need to stop the conveyor
         if (pose.position.y >= 0.538 and  pose.position.y <= 0.548 ):                       
             clientConveyor(powerOff)
             print("STOP CONVEYOR", end='\r')
@@ -111,7 +111,7 @@ def setup_box_tracker_server():
     Function called to setup the server and also subscribe to the model_states topic
 	
     """
-	# initialize the node
+    # initialize the node
     rospy.init_node("box_tracker_server_node")
     rospy.Service("box_tracker_service", Conveyor, BoxTrackerCallback)
     rospy.Subscriber("gazebo/model_states", ModelStates, modelStateCallback)
