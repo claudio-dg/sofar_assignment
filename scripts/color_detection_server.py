@@ -13,7 +13,7 @@
 -
 - Description:
 -
-- This node function as a server that the main.cpp node calls it when the conveyor is stopped and before the final movement of Tiago after it grasped the object.
+- This node function as a server that the main.cpp node calls when the conveyor is stopped.
 - This node also updates continuously the image from image_raw to have the latest one on which we perform the color detection. 
 - Once recognised it returns the color to main.cpp, which is now capable to tell Tiago in which bin put the box. We set 1 as GREEN and 0 as BLUE. 
 -
