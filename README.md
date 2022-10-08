@@ -45,12 +45,15 @@ Flowchart explaining how the simulation works
  
 In the following sections we describe how we implemented the code to obtain the main behaviours of Tiago and Gazebo Simulation.
  ### Box Spawning  :   "```spawn_box_server.py```"
+	To spawn boxes into the gazebo environment we created this server that is called by the ```main_node``` as soon as no boxes are available.
+	This node is a client to gazebo's servize : "```gazebo/spawn_urdf_model```", and calls it by passing as arguments: the path of the .URDF file of our boxes (contained in the "```URDF```" folder, and the position where to spawn it. Boxes are then spawned with a random color (blue or green) simply passing the relative path through a random generated variable. Moreover we have built these boxes in such a way to be easily grabbable by Tiago's grippers, in terms of weight and dimensions.
+	
  
  ### Conveyor movements  :  "```box_tracker_server.py```"
  
  ### Color Detection  :  "```color_detection_server.py```"
  
- ### Moving Tiago : "```main.cpp```" &  "```move_head.cpp```"
+ ### Moving Tiago :   "```move_head.cpp```" & "```main.cpp```"
  
 
 ## Possible Improvements
