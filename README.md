@@ -41,7 +41,7 @@ Flowchart explaining how the simulation works
  ## Code Explanation
  
 In the following sections we describe how we implemented the code to obtain the main behaviours of Tiago and Gazebo Simulation.
- ### Box Spawning  : ###  ```spawn_box_server.py```
+ ### Box Spawning  :   "```spawn_box_server.py```"
  
  ### Conveyor movements  : ### 
  
