@@ -91,7 +91,7 @@ In this project, we designed a strategy for solving the 3D object detection prob
 
 **Moveit** contains other tutorials that could be also used for the same purpose which are responsible of the movements so that the robot will be able to reach certain positions and this can be counted as an improved option to our ptoject.
 
-While for the detection of the objects, Tiago is equipped with an RGB-D camera that was able to catch two colors of the boxes (green and blue) spawned on the conveyor belt, whereas a possible improvement it could be allowing Tiago to grasp the object and release it relying on the shape or both the color and the shape of the object as more colors can be added and distinguished. 
+While for the detection of the objects, Tiago is equipped with an RGB-D camera that was able to catch two colors of the boxes (green and blue) spawned on the conveyor belt, whereas a possible improvement it could be or allowing Tiago to grasp the object and release it relying on the shape or both the color and the shape of the object or by giving the ability for the robot to distinguish more colors. 
 
  
  
