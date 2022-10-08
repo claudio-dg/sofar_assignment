@@ -19,7 +19,6 @@ Table of contents
 What and How To install useful thing for this project (ubuntu 18--tiago package--conveyor) and Hown to Run the simulation 
 
 
-dddd
 ## Gazebo Environment
 
 Image of the envirnoment/world
