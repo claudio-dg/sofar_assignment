@@ -40,7 +40,15 @@ Flowchart explaining how the simulation works
 	
  ## Code Explanation
  
-We explain how detect color works (es subs to tiagos camera, take the image, convert and etc..) how we moved the arm using followjoint trajectory ecc
+In the following sections we describe how we implemented the code to obtain the main behaviours of Tiago and Gazebo Simulation.
+ ### Box Spawning  : ### 
+ 
+ ### Conveyor movements  : ### 
+ 
+ ### Color Detection  : ### 
+ 
+ ### Moving Tiago : ### 
+ 
 
 ## Possible Improvements
  
