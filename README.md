@@ -52,6 +52,7 @@ This node is a client to gazebo's servize : "```gazebo/spawn_urdf_model```", and
  ### Conveyor movements  :  "```box_tracker_server.py```"
  
  ### Color Detection  :  "```color_detection_server.py```"
+I could also put an image here
  
  ### Moving Tiago :   "```move_head.cpp```" & "```main.cpp```"
  
