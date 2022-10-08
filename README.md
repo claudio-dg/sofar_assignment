@@ -27,7 +27,7 @@ The program requires the installation of the following packages and tools for th
 
 Image of the envirnoment/world
 <p>
-<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/Gazebo_world.png?raw=true" width="400"/>
+<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/Gazebo_world.png?raw=true" width="800"/>
 <p>
 	
 ## Project structure and behaviour description
