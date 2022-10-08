@@ -1,9 +1,11 @@
 # sofar_assignment
 ================================
 
-Short intro to the assignment
+Introduction:
+-------------
+The main purpose of this assignment (#14) is to build a software architecture (Ros 1 in our case) and a simulation environment containing a conveyor belt where 3D boxes are spawned one after the other and detected depending on their colors. Accordingly a robot manipulator (Tiago) is able to estimate their position through an RGB-D camera to grasp the box and put it in its specific bin.
 
-
+Authors: D.Bruzzo C.Del Gaizo P.Saade C.Tsague
 
 Table of contents
 ----------------------
