@@ -17,6 +17,10 @@ Table of contents
 ## Setup
 
 What and How To install useful thing for this project (ubuntu 18--tiago package--conveyor) and Hown to Run the simulation 
+The simulation is built on the ROS (Robot-Operating-Systems) platform, specifically the MELODIC version to be able to have the Tiago Ros package in it. Here the guide for Tiago installation Tiago robot. To use the melodic version it was necessary to work for the project on Ubuntu 18 which can be donwoloaded at Download Ubuntu 18.
+
+The program requires the installation of the following packages and tools for the specific project before it can be launched:
+
 
 
 ## Gazebo Environment
