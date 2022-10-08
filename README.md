@@ -26,6 +26,9 @@ The program requires the installation of the following packages and tools for th
 ## Gazebo Environment
 
 Image of the envirnoment/world
+<p>
+<img src="" width="400"/>
+<p>
 	
 ## Project structure and behaviour description
 
