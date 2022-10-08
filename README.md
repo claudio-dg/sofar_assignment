@@ -46,11 +46,11 @@ Flowchart explaining how the simulation works
 In the following sections we describe how we implemented the code to obtain the main behaviours of Tiago and Gazebo Simulation.
  ### Box Spawning  :   "```spawn_box_server.py```"
  
- ### Conveyor movements  : ### 
+ ### Conveyor movements  :  "```box_tracker_server.py```"
  
- ### Color Detection  : ### 
+ ### Color Detection  :  "```color_detection_server.py```"
  
- ### Moving Tiago : ### 
+ ### Moving Tiago : "```main.cpp```" &  "```move_head.cpp```"
  
 
 ## Possible Improvements
