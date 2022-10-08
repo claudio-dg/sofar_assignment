@@ -33,6 +33,32 @@ Image of the envirnoment/world
 ## Project structure and behaviour description
 
 we show rqt graph and uml explaing the communication among nodes
+	
+	The idea of this project is to have a central node, that is ```main.cpp```, which occupies controlling all the other nodes. Through ```services``` and ```messages``` it temporizes the right time when to call the correct node.
+At first, when the world is launched, the servers are launched and the first node that is called is ```move_head.cpp``` which moves down Tiago's head.
+Then ```main.cpp``` starts the simulation cycle by calling  ```/spawn_box_service``` to communicate to ```spaw_box_server.py``` to spawn a random colored box through the ```Spawner.srv```:
+```cpp
+---
+bool spawned
+
+```
+Once the server returns the reply, which means that the box is spawned, main.cpp calls the ```/box_tracker_service``` to tell ```box_tracker_server.py``` to sart moving the conveyor belt through ```Conveyor.srv```:
+```cpp
+
+---
+string conveyorStatus
+
+```
+This is not enough to main.cpp to enter in the next step of the cycle. It needs to wait for ```box_tracker_server.py``` for publishing that the box has reached the final position on the conveyor belt and this last one has been stopped. This ```publish/subscribe``` communication is done through the topic ```our_topic``` on ```Bool``` msg. The callback in main.cpp, when called, changes the value needed to enter in the next step. 
+Then the last communication is between main.cpp and the node ```color_detection_server.py```. Through the service ```/color_detect_service``` the server communicates the color of the box to the main node on ```DetectColor.srv```:
+```cpp
+# sending the color: 0 = blue, 1 = green
+
+---
+bool color 
+```
+This server is subbed to ```/xtion/rgb/image_raw``` topic in order to continuously update the image on which perform the color detection.
+Then ```main.cpp``` knows in which bin put the box based on the color and starts moving Tiago's arm toward the object to grab it.
 
 
  ### Behaviour description  : ### 
