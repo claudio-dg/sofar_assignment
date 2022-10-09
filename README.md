@@ -19,10 +19,20 @@ Table of contents
 
 ## Setup
 
-	What and How To install useful thing for this project (ubuntu 18--tiago package--conveyor) and Hown to Run the simulation 
-The simulation is built on the ROS (Robot-Operating-Systems) platform, specifically the MELODIC version to be able to have the Tiago Ros package in it. Here the guide for Tiago installation Tiago robot. To use the melodic version it was necessary to work for the project on Ubuntu 18 which can be donwoloaded at Download Ubuntu 18.
+The simulation is built on the [ROS](http://wiki.ros.org/) (Robot-Operating-Systems) platform, specifically the MELODIC version to be able to have the Tiago Ros package in it. Here the guide for Tiago installation [Tiago robot](http://wiki.ros.org/). To use the melodic version it was necessary to work for the project on **Ubuntu 18** which can be donwoloaded at [Download Ubuntu 18](https://releases.ubuntu.com/18.04/). As for the usage of the conveyor in this project, here the steps for its plugin [gazebo conveyor](https://github.com/rokokoo/gazebo-conveyor)
 
-The program requires the installation of the following packages and tools for the specific project before it can be launched:
+
+Finally, to launch the simulation, you should run the line bellow:
+
+```bash
+$ roslaunch sofar_assignment world.launch 
+```
+To start the simulation, you should run the line bellow:
+
+
+```bash
+$ roslaunch sofar_assignment simulation.launch 
+```
 
 
 
