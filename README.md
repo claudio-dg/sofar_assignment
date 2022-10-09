@@ -75,7 +75,49 @@ In the following sections we describe how we implemented the code to obtain the 
  ### Box Spawning  :   "```spawn_box_server.py```"
 To spawn boxes into the gazebo environment we created this server that is called by the ```main_node``` as soon as no boxes are available.
 This node is a client to gazebo's service : "```gazebo/spawn_urdf_model```", and calls it by passing as arguments: the path of the .URDF file of our boxes (contained in the "```URDF```" folder), and the position where to spawn it. Boxes are then spawned with a random color (blue or green) simply passing the path of the relative .urdf through a randomly generated variable. Moreover we have built these boxes in such a way to be easily grabbable by Tiago's grippers, in terms of weight and dimensions.
+```bash
+def spawn_model(req):
 	
+    global boxN, itemName, blue_path, green_path, item_path, orient, initial_pose, rand_flag
+
+    # get a random integer between 0 and 100
+    rand_flag = int(random()*100)
+
+    # set the spawning position
+    initial_pose = Pose()
+    initial_pose.position.x = 0
+    initial_pose.position.y = 0.4
+    initial_pose.position.z = 1.3
+
+    # declare the urdf path
+    blue_path = '/home/piya/Assignment_ws/src/sofar_assignment/urdf/blue_box.urdf' 
+    green_path = '/home/piya/Assignment_ws/src/sofar_assignment/urdf/green_box.urdf'
+
+    # set the spawning orientation
+    orient = Quaternion(0,0,0,0)
+
+
+    if(rand_flag % 2):
+        #blue chosen
+        itemName = "blue_box_" + str(boxN)
+        item_path = blue_path
+    else:
+        #green chosen 
+        itemName = "green_box_" + str(boxN)
+        item_path = green_path
+
+    boxN += 1
+
+    rospy.wait_for_service("gazebo/spawn_urdf_model")
+    spawnClient = rospy.ServiceProxy("gazebo/spawn_urdf_model", SpawnModel)
+    
+
+    # calling the client of spawner 
+    spawnClient(itemName, open(item_path, 'r').read(), "", initial_pose, "world")
+    print("Spawned : ", itemName)
+
+    return True	
+```
  
  ### Conveyor movements  :  "```box_tracker_server.py```"
 To communicate with the Conveyor belt we created this server that is called by the ```main_node``` as soon as a new box is spawned. This node is a client to Conveyor's Plugin service "```/conveyor/control```", and calls it by passing the desired power of the conveyor to make it move or stop it when necessary. In addition to that it subscribes to Gazebo's topic "```gazebo/model_states```" to be aware at each time of the position of each model in the environment: thanks to this we managed to implement the algorithm for which the conveyor is stopped when a box reaches its final position on the conveyor, allowing it to be grabbed by Tiago.
