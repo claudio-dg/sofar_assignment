@@ -74,11 +74,35 @@ Flowchart explaining how the simulation works
 In the following sections we describe how we implemented the code to obtain the main behaviours of Tiago and Gazebo Simulation.
  ### Box Spawning  :   "```spawn_box_server.py```"
 To spawn boxes into the gazebo environment we created this server that is called by the ```main_node``` as soon as no boxes are available.
-This node is a client to gazebo's servize : "```gazebo/spawn_urdf_model```", and calls it by passing as arguments: the path of the .URDF file of our boxes (contained in the "```URDF```" folder), and the position where to spawn it. Boxes are then spawned with a random color (blue or green) simply passing the path of the relative .urdf through a randomly generated variable. Moreover we have built these boxes in such a way to be easily grabbable by Tiago's grippers, in terms of weight and dimensions.
+This node is a client to gazebo's service : "```gazebo/spawn_urdf_model```", and calls it by passing as arguments: the path of the .URDF file of our boxes (contained in the "```URDF```" folder), and the position where to spawn it. Boxes are then spawned with a random color (blue or green) simply passing the path of the relative .urdf through a randomly generated variable. Moreover we have built these boxes in such a way to be easily grabbable by Tiago's grippers, in terms of weight and dimensions.
 	
  
  ### Conveyor movements  :  "```box_tracker_server.py```"
- 
+To communicate with the Conveyor belt we created this server that is called by the ```main_node``` as soon as a new box is spawned. This node is a client to Conveyor's Plugin service "```/conveyor/control```", and calls it by passing the desired power of the conveyor to make it move or stop it when necessary. In addition to that it subscribes to Gazebo's topic "```gazebo/model_states```" to be aware at each time of the position of each model in the environment: thanks to this we managed to implement the algorithm for which the conveyor is stopped when a box reaches its final position on the conveyor, allowing it to be grabbed by Tiago.
+```bash
+def modelStateCallback(modelState):
+	
+    global model_state, flag, pub
+    model_state = modelState
+    listNames = model_state.name
+	
+    nItems = len(listNames)
+    
+    #check every item in the list of gazebo's objects
+    for item in range(0, len(listNames) ):
+        pose = model_state.pose[item]
+		
+	#if the item is between that coordinates  we need to stop the conveyor
+        if (pose.position.y >= 0.538 and  pose.position.y <= 0.548 ):                       
+            clientConveyor(powerOff)
+            print("STOP CONVEYOR", end='\r')
+	    if(flag == 0):
+            	flag = 1
+	    	pub.publish(True)
+```	
+The here shown code refers to the callback of "```gazebo/model_states```" topic: here the algorithm is based on a continous check of the elements existing in the environment through the array of names; when the y-coordinate of one of them enters in a certain range (i.e. 0.538 < y < 0.548), it means that a box has reached the final position, therefore the conveyor is stopped and a msg is published on ```our_topic``` to advertise the ```main``` node
+								 
+								 
  ### Color Detection  :  "```color_detection_server.py```"
 I could also put an image here
  
