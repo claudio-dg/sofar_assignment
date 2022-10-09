@@ -159,7 +159,8 @@ The here shown code refers to the callback of "```gazebo/model_states```" topic:
 								 
 								 
  ### Color Detection  :  "```color_detection_server.py```"
- To obtain
+ To obtain Color Detection we made use of ```OpenCV``` Computer Vision libraries and created this server that is called by the ```main``` when the conveyor is stopped. It subscribes to Tiago's camera sensor ```/xtion/rgb/image_raw``` in order to have real time images from Tiago's point of view. This image is converted into a CV format through the ```bridge.imgmsg_to_cv2``` function, then the RGB components are converted into HSV (hue-saturation-value)
+I could also put an image here
 I could also put an image here
  
  ### Moving Tiago :   "```move_head.cpp```" & "```main.cpp```"
