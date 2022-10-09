@@ -296,6 +296,60 @@ void moveHead(void){
 
 }
 ```
+The ```main``` instead, creates Action clients to ```/arm_controller/follow_joint_trajectory``` ```/torso_controller/follow_joint_trajectory``` ```/parallel_gripper_controller/follow_joint_trajectory``` to respectively move the arm, torso and gripper.
+Regarding the torso movement we just made Tiago go up a bit to make sure he was able to reach the object and not collide with aniìythin in the environment. (please note that in the simulation tiago is a bit far from the conveyor, since we noticed that the hit boxes of this last presented some issues being bigger than the actual dimension of it, so to avoid crushing Tiago this distance from the conveyor, and torso movement were required).
+For the grippers we just specified the closing/opening by setting the joint position to minimun or maximum:
+```bash		
+void waypoints_closeGripper_goal(control_msgs::FollowJointTrajectoryGoal& goal)
+{
+  // The joint names, which apply to all waypoints
+  goal.trajectory.joint_names.push_back("gripper_left_finger_joint");
+  goal.trajectory.joint_names.push_back("gripper_right_finger_joint");
+
+  // Two waypoints in this goal trajectory
+  goal.trajectory.points.resize(1);
+
+  // Positions
+  int index = 0;
+  goal.trajectory.points[index].positions.resize(2);
+  goal.trajectory.points[index].positions[0] = 0.0;
+  goal.trajectory.points[index].positions[1] = 0.0;
+
+  // To be reached 2 second after starting along the trajectory
+  goal.trajectory.points[index].time_from_start = ros::Duration(2.0);
+  ROS_INFO("closing gripper");
+ 
+}
+void closeGripper()
+{
+//Create an torso controller action client to move the TIAGo's gripper
+  gripper_control_client_Ptr GripperClient;
+  createGripperClient(GripperClient);
+
+  // Generates the goal for the TIAGo's torso
+  control_msgs::FollowJointTrajectoryGoal gripper_goal;
+  waypoints_closeGripper_goal(gripper_goal);
+
+  // Sends the command to start the given trajectory 1s from now
+  gripper_goal.trajectory.header.stamp = ros::Time::now() + ros::Duration(1.0);
+  GripperClient->sendGoal(gripper_goal);
+  ROS_INFO("grabbing the object");
+
+  // Wait for four seconds instead of trajectory execution, because here the 0.0 position of grippers will never be reached due to box presence
+  ros::Duration(4).sleep();
+
+}
+```
+In particular for the "closing gripper" movement we had to put a ```"ros::Duration(4).sleep();"``` to wait for the trajectory execution instead of using the usual:
+```bash
+while(!(GripperClient->getState().isDone()) && ros::ok())
+  {
+    ros::Duration(2).sleep(); // sleep for two seconds
+  }
+```
+beacuse in the case of "closing gripper", the robot was never able to actually reach the desired configuration due to the presence of the object between grippers, therefore by putting this "wait", we managed to obtain a secure grab of the objects.
+In the end, regarding arm movements, we created several waypoints for a certain set of movements that are: PregraspMovement, PostgraspMovements (towards blue bin or green bin) and PostDropMovements to return to a a starting position from which the robot was able to reproduce the PregraspMovement again.
+Each of these motions presents several waypoints both to avoid collision with possible elemnts in the environment, both to allow a correct execution of the tasks avoiding, for instance, too fast movements in the "PostGrasp" step that would cause the box to eventually slip out of Tiago's gripper. For sake of simplicity the code of this part is not shown here in this ```README```, but can be found in ```src/main.cpp```.
 ## Demo Simulation
 <p align="center">
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/BwsuGeH5LvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 	      clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
