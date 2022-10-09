@@ -264,7 +264,8 @@ def callbackFunc(req):
 ```
  ### Moving Tiago :   "```move_head.cpp```" & "```main.cpp```"
  To move Tiago we made two different codes, but the genereal idea is to have some predefined motions to  move each joint, knowing in advance what the final position of the boxes to detect and grab will be on the conveyor belt.
-"```move_head.cpp```" create a ROS client to head controller ("```/head_controller/point_head_action```") and then assigns a relative position to reach with respect to the current point of view of Tiago, in order to have a better centered sight of the boxes and facilitate the color detection task.
+		
+"```move_head.cpp```" creates a ROS client to head controller ("```/head_controller/point_head_action```") and then assigns a relative position to reach with respect to the current point of view of Tiago, in order to have a better centered sight of the boxes and facilitate the color detection task.
 ```bash		
 void moveHead(void){
 
