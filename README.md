@@ -28,7 +28,7 @@ The program requires the installation of the following packages and tools for th
 
 ## Gazebo Environment
 
-Image of the envirnoment/world
+This image shows the simulation environment we created for this assignment, consisting of Tiago placed at end of a conveyor belt with coloured bins to its sides where to put relative boxes:
 <p>
 <img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/Gazebo_world.png?raw=true" width="700"/>
 <p>
