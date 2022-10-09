@@ -19,7 +19,7 @@ Table of contents
 
 ## Setup
 
-The simulation is built on the [ROS](http://wiki.ros.org/) (Robot-Operating-Systems) platform, specifically the MELODIC version to be able to have the Tiago Ros package in it. Here the guide for Tiago installation [Tiago robot](http://wiki.ros.org/). To use the melodic version it was necessary to work for the project on **Ubuntu 18** which can be downoloaded at [Download Ubuntu 18](https://releases.ubuntu.com/18.04/). As for the usage of the conveyor in this project, here the steps for [the conveyor_demo](https://github.com/rokokoo/conveyor_demo.git) and its plugin [gazebo conveyor](https://github.com/rokokoo/gazebo-conveyor). Please make sure to have the here named packages in your workspace to be able to run this project. 
+The simulation is built on the [ROS](http://wiki.ros.org/) (Robot-Operating-Systems) platform, specifically the MELODIC version to be able to have the Tiago Ros package in it. Here the guide for Tiago installation [Tiago robot](http://wiki.ros.org/). To use the melodic version it was necessary to work for the project on **Ubuntu 18** which can be downoloaded at [Download Ubuntu 18](https://releases.ubuntu.com/18.04/). As for the usage of the conveyor in this project, here the steps for the [conveyor_demo](https://github.com/rokokoo/conveyor_demo.git) and its plugin [gazebo conveyor](https://github.com/rokokoo/gazebo-conveyor). Please make sure to have the here named packages in your workspace to be able to run this project. 
 
 For the part of the detection and recognition of the objects, the openCV which is an open-source library on computer vision is necessary and can be installed by typing the line bellow:
 
