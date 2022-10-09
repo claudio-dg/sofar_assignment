@@ -350,10 +350,10 @@ while(!(GripperClient->getState().isDone()) && ros::ok())
 beacuse in the case of "closing gripper", the robot was never able to actually reach the desired configuration due to the presence of the object between grippers, therefore by putting this "wait", we managed to obtain a secure grab of the objects.
 In the end, regarding arm movements, we created several waypoints for a certain set of movements that are: PregraspMovement, PostgraspMovements (towards blue bin or green bin) and PostDropMovements to return to a a starting position from which the robot was able to reproduce the PregraspMovement again.
 Each of these motions presents several waypoints both to avoid collision with possible elemnts in the environment, both to allow a correct execution of the tasks avoiding, for instance, too fast movements in the "PostGrasp" step that would cause the box to eventually slip out of Tiago's gripper. For sake of simplicity the code of this part is not shown here in this ```README```, but can be found in ```src/main.cpp```.
+
 ## Demo Simulation
-<p align="center">
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/BwsuGeH5LvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 	      clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>	
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BwsuGeH5LvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 		
 ## Possible Improvements
 
