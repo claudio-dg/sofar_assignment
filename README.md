@@ -14,6 +14,7 @@ Table of contents
 * [Gazebo Environment](#gazebo-environment)
 * [Project structure and behaviour description](#project-structure-and-behaviour-description)
 * [Code Explanation](#code-explanation)
+* [Demo simulation] (#demo-simulation)
 * [Possible Improvements](#possible-improvements)
 
 ## Setup
