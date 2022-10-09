@@ -65,7 +65,7 @@ Then ```main.cpp``` knows in which bin put the box based on the color and starts
 
  ### Behaviour description  : ### 
 
-Flowchart explaining how the simulation works
+Flowchart explaining how the simulation works & VIDEO DEMO
 
 	
 	
