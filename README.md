@@ -358,7 +358,6 @@ Each of these motions presents several waypoints both to avoid collision with po
     height="480"
     src="//www.youtube.com/embed/BwsuGeH5LvY"
     frameborder="0"
-    allow="autoplay; encrypted-media"
     allowfullscreen
 >
 </iframe>
