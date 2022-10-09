@@ -352,6 +352,7 @@ In the end, regarding arm movements, we created several waypoints for a certain 
 Each of these motions presents several waypoints both to avoid collision with possible elemnts in the environment, both to allow a correct execution of the tasks avoiding, for instance, too fast movements in the "PostGrasp" step that would cause the box to eventually slip out of Tiago's gripper. For sake of simplicity the code of this part is not shown here in this ```README```, but can be found in ```src/main.cpp```.
 
 ## Demo Simulation
+Here we propose a short Demo to show the real functioning of our project. The video has been accelerated to reduce its duration.
 
 [<iframe width="560" height="315" src="https://www.youtube.com/embed/BwsuGeH5LvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>](https://github.com/claudio-dg/sofar_assignment/blob/main/README.md)
 		
