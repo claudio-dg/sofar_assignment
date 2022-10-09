@@ -167,7 +167,7 @@ The here shown code refers to the callback of "```gazebo/model_states```" topic:
 To distinguish color we then created masks choosing some ranges for these HSV components to be applied to the image retrieved from Tiago's camera. The code will then check wether it recognises one of these colors (blue-green) in the image and will also output a pop-up showing the detected color as shown in the following image:
 		
 <p>
-<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/color_detect.png?raw=true" width="700"/>
+<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/color_detect.png?raw=true" width="600"/>
 <p>
 		
 The code of what previosuly described is the following:
