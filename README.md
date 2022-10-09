@@ -34,7 +34,9 @@ Image of the envirnoment/world
 	
 ## Project structure and behaviour description
 
-we show rqt graph and uml explaing the communication among nodes
+<p>
+<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/rosgraph.png" width="700"/>
+<p>
 	
 The idea of this project is to have a central node, that is ```main.cpp```, which occupies controlling all the other nodes. Through ```services``` and ```messages``` it temporizes the right time when to call the correct node.
 At first, when the world is launched, the servers are launched and the first node that is called is ```move_head.cpp``` which moves down Tiago's head.
