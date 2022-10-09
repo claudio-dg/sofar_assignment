@@ -35,7 +35,7 @@ Image of the envirnoment/world
 ## Project structure and behaviour description
 
 <p>
-<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/rosgraph.png" width="700"/>
+<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/rosgraph.png" width="900"/>
 <p>
 	
 The idea of this project is to have a central node, that is ```main.cpp```, which occupies controlling all the other nodes. Through ```services``` and ```messages``` it temporizes the right time when to call the correct node.
