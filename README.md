@@ -87,11 +87,11 @@ I could also put an image here
 
 ## Possible Improvements
 
-In this project, we designed a strategy for solving the 3D object detection problem for the robot named Tiago which was able to recognize, pick up and release boxes according to their colors in their specific place which can be done in many other ways. So instead of getting manually the waypoints related to the movements of the robot arm certainly in a way that the parameters are clearly chosen, therefore, no collisions with objects will occur.
+In this project, we designed a strategy for solving the 3D object color detection problem for the robot named Tiago which was able to recognize, pick up and release boxes according to their colors in their specific place which can be done in many other ways. So instead of getting manually the waypoints related to the movements of the robot arm certainly in a way that the parameters are clearly chosen, therefore, no collisions with objects will occur.
 
-**Moveit** contains other tutorials that could be also used for the same purpose which are responsible of the movements so that the robot will be able to reach certain positions and this can be counted as an improved option to our ptoject.
+**Moveit** contains other tutorials that could be also used for the same purpose which are responsible of the movements so that the robot will be able to autonomously detect the position of the object to grab, defining the necessary arm movements in order to grab it and this can be counted as an improved option to our project.
 
-While for the detection of the objects, Tiago is equipped with an RGB-D camera that was able to catch two colors of the boxes (green and blue) spawned on the conveyor belt, whereas a possible improvement it could be or allowing Tiago to grasp the object and release it relying on the shape or both the color and the shape of the object or by giving the ability for the robot to distinguish more colors. 
+While for the detection of the objects, Tiago is equipped with an RGB-D camera that was able to catch two colors of the boxes (green and blue) spawned on the conveyor belt, whereas a possible improvement it could be or allowing Tiago to grasp the object and release it relying on the shape or both the color and the shape of the object or by giving the ability for the robot to distinguish more colors, simply by adding new "color masks" in the ```color_detection_server.py``` script. 
 
  
  
