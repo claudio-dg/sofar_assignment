@@ -430,7 +430,7 @@ Last, we made this infinite while loop to run the simulation in which required s
 ## Demo Simulation
 Here we propose a short Demo to show the real functioning of our project. The video has been accelerated to reduce its duration.
 
-[<iframe width="560" height="315" src="https://www.youtube.com/embed/BwsuGeH5LvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>](https://github.com/claudio-dg/sofar_assignment/blob/main/README.md)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BwsuGeH5LvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 ## Possible Improvements
