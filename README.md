@@ -167,11 +167,100 @@ The here shown code refers to the callback of "```gazebo/model_states```" topic:
 To distinguish color we then created masks choosing some ranges for these HSV components to be applied to the image retrieved from Tiago's camera. The code will then check wether it recognises one of these colors (blue-green) in the image and will also output a pop-up showing the detected color as shown in the following image:
 		
 <p>
-<img src="" width="700"/>
+<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/color_detect.png?raw=true" width="700"/>
 <p>
 		
 The code of what previosuly described is the following:
- 
+```bash
+def callbackFunc(req):
+
+	global img
+	
+
+	try:
+		imageFrame = bridge.imgmsg_to_cv2(img, "passthrough")
+	except CvBridgeError as e:
+		rospy.logerr("Cv bridge error: {0}".format(e))
+	
+	# Convert the imageFrame in BGR(RGB color space) to HSV(hue-saturation-value) color space	
+	hsvFrame = cv2.cvtColor(imageFrame, cv2.COLOR_BGR2HSV)
+
+	
+	# Set range for blue color and define mask
+	blue_lower = np.array([94, 80, 2], np.uint8)
+	blue_upper = np.array([120, 255, 255], np.uint8)
+	blue_mask = cv2.inRange(hsvFrame, blue_lower, blue_upper)
+	
+
+
+	# Set range for green color and define mask
+	green_lower = np.array([25, 52, 72], np.uint8)
+	green_upper = np.array([102, 255, 255], np.uint8)
+	green_mask = cv2.inRange(hsvFrame, green_lower, green_upper)
+	
+
+	# Morphological Transform, Dilation for each color and bitwise_and operator between imageFrame and mask determines to detect only that particular color
+	kernal = np.ones((5, 5), "uint8")
+
+	# For blue color
+	blue_mask = cv2.dilate(blue_mask, kernal)
+	res_blue = cv2.bitwise_and(imageFrame, imageFrame,
+							mask = blue_mask)
+	
+	# For green color
+	green_mask = cv2.dilate(green_mask, kernal)
+	res_green = cv2.bitwise_and(imageFrame, imageFrame,
+								mask = green_mask)
+	
+	# Creating contour to track green color
+	contours, hierarchy = cv2.findContours(green_mask,
+										cv2.RETR_TREE,
+										cv2.CHAIN_APPROX_SIMPLE)[-2:]
+	
+	for pic, contour in enumerate(contours):
+		area = cv2.contourArea(contour)
+		if(area > 300):
+			x, y, w, h = cv2.boundingRect(contour)
+			imageFrame = cv2.rectangle(imageFrame, (x, y),
+									(x + w, y + h),
+									(0, 255, 0), 2)
+			
+			cv2.putText(imageFrame, "Green Colour", (x, y),
+						cv2.FONT_HERSHEY_SIMPLEX,
+						1.0, (0, 255, 0))
+			# Program Termination
+			cv2.imshow("Multiple Color Detection in Real-TIme", imageFrame)
+			
+			if cv2.waitKey(10) & 0xFF == ord('q'): 
+				cap.release()
+				cv2.destroyAllWindows()
+
+			return True
+
+	# Creating contour to track blue color
+	contours, hierarchy = cv2.findContours(blue_mask,
+										cv2.RETR_TREE,
+										cv2.CHAIN_APPROX_SIMPLE)[-2:]
+	for pic, contour in enumerate(contours):
+		area = cv2.contourArea(contour)
+		if(area > 300):
+			x, y, w, h = cv2.boundingRect(contour)
+			imageFrame = cv2.rectangle(imageFrame, (x, y),
+									(x + w, y + h),
+									(255, 0, 0), 2)
+			
+			cv2.putText(imageFrame, "Blue Colour", (x, y),
+						cv2.FONT_HERSHEY_SIMPLEX,
+						1.0, (255, 0, 0))
+			# Program Termination
+			cv2.imshow("Multiple Color Detection in Real-TIme", imageFrame)
+			if cv2.waitKey(10) & 0xFF == ord('q'): ##################
+				cap.release()
+				cv2.destroyAllWindows()
+
+			return False
+
+```
  ### Moving Tiago :   "```move_head.cpp```" & "```main.cpp```"
  
 
