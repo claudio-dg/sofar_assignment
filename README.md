@@ -351,12 +351,88 @@ while(!(GripperClient->getState().isDone()) && ros::ok())
 beacuse in the case of "closing gripper", the robot was never able to actually reach the desired configuration due to the presence of the object between grippers, therefore by putting this "wait", we managed to obtain a secure grab of the objects.
 In the end, regarding arm movements, we created several waypoints for a certain set of movements that are: PregraspMovement, PostgraspMovements (towards blue bin or green bin) and PostDropMovements to return to a a starting position from which the robot was able to reproduce the PregraspMovement again.
 Each of these motions presents several waypoints both to avoid collision with possible elemnts in the environment, both to allow a correct execution of the tasks avoiding, for instance, too fast movements in the "PostGrasp" step that would cause the box to eventually slip out of Tiago's gripper. For sake of simplicity the code of this part is not shown here in this ```README```, but can be found in ```src/main.cpp```.
+### Infinite Loop :  "```main.cpp```"
+Last, we made this infinite while loop to run the simulation in which required services are called and Tiago's actions are successfully carried out in sequence:
+```bash
+  //infinite simulation
+  while(ros::ok())
+	{
 
+	if(moveTorsoOnce)
+	{
+	  //ROS_INFO("moving head down");
+	  moveTorso();
+          moveTorsoOnce=0;
+	}
+
+	switch (flag) {
+	case 1:
+	SpawnerClient.waitForExistence();
+	SpawnerClient.call(spawner);
+ 	ROS_INFO("spawning box");
+	if(spawner.response.spawned) flag = 2;
+	else ROS_INFO("ERROR occured while spawning box");
+	break;
+
+	case 2:
+	ConveyorClient.waitForExistence();
+	ConveyorClient.call(conveyor);
+ 	ROS_INFO("moving conveyor");
+	flag = 0;
+
+		break;
+	case 3:
+	ColorClient.waitForExistence();
+	ColorClient.call(detectColor);
+	ROS_INFO("Detecting color");
+	if(detectColor.response.color) //true == Green
+	{
+	  ROS_INFO("GREEN box detected");	
+	}
+
+	else			      //false == Blue
+	{
+	   ROS_INFO("BLUE box detected");
+	} 
+
+	PregraspMoveArm();
+	closeGripper();
+
+
+	if(detectColor.response.color) //true == Green -> move to green box
+	{
+	  PostgraspMoveArmGreen();
+          openGripper();
+	  PostDropNeutralGreenMove();	
+	}
+
+	else			      //false == Blue -> move to blue box
+	 {
+	   PostgraspMoveArmBlue();
+           openGripper();
+	   PostDropNeutralBlueMove();
+	 } 
+	 flag = 1;
+	
+		break;
+
+	default:
+	ros::spinOnce();
+		break;
+	ros::spinOnce();
+	}      
+ }
+```
+		
+		
+		
+		
 ## Demo Simulation
 Here we propose a short Demo to show the real functioning of our project. The video has been accelerated to reduce its duration.
 
 [<iframe width="560" height="315" src="https://www.youtube.com/embed/BwsuGeH5LvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>](https://github.com/claudio-dg/sofar_assignment/blob/main/README.md)
-		
+
+
 ## Possible Improvements
 
 In this project, we designed a strategy for solving the 3D object color detection problem for the robot named Tiago which was able to recognize, pick up and release boxes according to their colors in their specific place which can be done in many other ways. So instead of getting manually the waypoints related to the movements of the robot arm certainly in a way that the parameters are clearly chosen, therefore, no collisions with objects will occur.
