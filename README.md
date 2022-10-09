@@ -146,6 +146,7 @@ The here shown code refers to the callback of "```gazebo/model_states```" topic:
 								 
 								 
  ### Color Detection  :  "```color_detection_server.py```"
+ To obtain
 I could also put an image here
  
  ### Moving Tiago :   "```move_head.cpp```" & "```main.cpp```"
