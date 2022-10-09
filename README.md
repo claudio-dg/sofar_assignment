@@ -75,7 +75,11 @@ Then ```main.cpp``` knows in which bin put the box based on the color and starts
 
 
  ### RQT graph  : ### 
+This is the schema of the project in ```sofar_assignment``` and the interaction between the nodes. ROS can genearte this graph by the command:
 
+```bash
+$ rosrun rqt_graph rqt_graph
+```
 
 <p>
 <img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/rosgraph.png" width="1000"/>
