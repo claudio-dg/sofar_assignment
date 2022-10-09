@@ -34,10 +34,19 @@ Image of the envirnoment/world
 	
 ## Project structure and behaviour description
 
+### Flowchart
+	
 <p>
-<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/rosgraph.png" width="1000"/>
+<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/Tiago%20Flowchart.png" width="700"/>
+<p>
+
+### UML
+	
+<p>
+<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/UML.jpeg" width="700"/>
 <p>
 	
+ ### Behaviour description  :
 The idea of this project is to have a central node, that is ```main.cpp```, which occupies controlling all the other nodes. Through ```services``` and ```messages``` it temporizes the right time when to call the correct node.
 At first, when the world is launched, the servers are launched and the first node that is called is ```move_head.cpp``` which moves down Tiago's head.
 Then ```main.cpp``` starts the simulation cycle by moving the torso up a bit and calling  ```/spawn_box_service``` to communicate to ```spaw_box_server.py``` to spawn a random colored box through the ```Spawner.srv```:
@@ -65,10 +74,12 @@ This server is subbed to ```/xtion/rgb/image_raw``` topic in order to continuous
 Then ```main.cpp``` knows in which bin put the box based on the color and starts moving Tiago's arm toward the object to grab it.
 
 
- ### Behaviour description  : ### 
+ ### RQT graph  : ### 
 
-Flowchart explaining how the simulation works & VIDEO DEMO
 
+<p>
+<img src="https://github.com/claudio-dg/sofar_assignment/blob/main/images/rosgraph.png" width="1000"/>
+<p>
 	
 	
  ## Code Explanation
