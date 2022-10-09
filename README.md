@@ -298,7 +298,7 @@ void moveHead(void){
 }
 ```
 The ```main``` instead, creates Action clients to ```/arm_controller/follow_joint_trajectory``` ```/torso_controller/follow_joint_trajectory``` ```/parallel_gripper_controller/follow_joint_trajectory``` to respectively move the arm, torso and gripper.
-Regarding the torso movement we just made Tiago go up a bit to make sure he was able to reach the object and not collide with aniìythin in the environment. (please note that in the simulation tiago is a bit far from the conveyor, since we noticed that the hit boxes of this last presented some issues being bigger than the actual dimension of it, so to avoid crushing Tiago this distance from the conveyor, and torso movement were required).
+Regarding the torso movement we just made Tiago go up a bit to make sure he was able to reach the object and not collide with anything in the environment. (please note that in the simulation tiago is a bit far from the conveyor, since we noticed that the hit boxes of this last presented some issues being bigger than the actual dimension of it, so to avoid crushing Tiago this distance from the conveyor, and torso movement were required).
 For the grippers we just specified the closing/opening by setting the joint position to minimun or maximum:
 ```bash		
 void waypoints_closeGripper_goal(control_msgs::FollowJointTrajectoryGoal& goal)
