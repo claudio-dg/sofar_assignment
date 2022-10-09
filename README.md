@@ -353,17 +353,7 @@ Each of these motions presents several waypoints both to avoid collision with po
 
 ## Demo Simulation
 
-<iframe
-    width="640"
-    height="480"
-    src="//www.youtube.com/embed/BwsuGeH5LvY"
-    frameborder="0"
-    allowfullscreen
->
-</iframe>
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BwsuGeH5LvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 		
 ## Possible Improvements
 
