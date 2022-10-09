@@ -263,7 +263,39 @@ def callbackFunc(req):
 
 ```
  ### Moving Tiago :   "```move_head.cpp```" & "```main.cpp```"
- 
+ To move Tiago we made two different codes, but the genereal idea is to have some predefined motions to  move each joint, knowing in advance what the final position of the boxes to detect and grab will be on the conveyor belt.
+"```move_head.cpp```" create a ROS client to head controller ("```/head_controller/point_head_action```") and then assigns a relative position to reach with respect to the current point of view of Tiago, in order to have a better centered sight of the boxes and facilitate the color detection task.
+```bash		
+void moveHead(void){
+
+    geometry_msgs::PointStamped pointStamped;
+    pointStamped.header.frame_id = "/xtion_rgb_optical_frame"; 
+    double x = 0.0;
+    double y = 0.0;
+    double Z = 1.0;
+
+    // position is relative so taken at the current image view
+    pointStamped.point.x = 0.0 * Z;
+    pointStamped.point.y = 0.7 * Z; // positive down, negative up
+    pointStamped.point.z = Z; 
+
+
+    //build the action goal
+    control_msgs::PointHeadGoal goal;
+    //the goal consists in making the Z axis of the cameraFrame to point towards the pointStamped
+    goal.pointing_frame = "/xtion_rgb_optical_frame";
+    goal.pointing_axis.x = 0.0;
+    goal.pointing_axis.y = 0.0;
+    goal.pointing_axis.z = 1.0;
+    goal.min_duration = ros::Duration(1.0);
+    goal.max_velocity = 0.25;
+    goal.target = pointStamped;
+
+    pointHeadClient->sendGoal(goal);
+    ros::Duration(0.5).sleep();
+
+}
+```
 ## Demo Simulation
 		
 		
