@@ -264,7 +264,9 @@ def callbackFunc(req):
 ```
  ### Moving Tiago :   "```move_head.cpp```" & "```main.cpp```"
  
-
+## Demo Simulation
+		
+		
 ## Possible Improvements
 
 In this project, we designed a strategy for solving the 3D object color detection problem for the robot named Tiago which was able to recognize, pick up and release boxes according to their colors in their specific place which can be done in many other ways. So instead of getting manually the waypoints related to the movements of the robot arm certainly in a way that the parameters are clearly chosen, therefore, no collisions with objects will occur.
